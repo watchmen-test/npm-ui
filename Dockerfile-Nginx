@@ -1,0 +1,19 @@
+FROM nginx
+# Make app directory in the container.
+#RUN mkdir app
+
+# Copy whole code to app directory.
+
+RUN rm -rf //usr/share/nginx/html/index.html
+RUN rm -rf //usr/share/nginx/html/50x.html
+COPY /build /usr/share/nginx/html/
+
+
+
+# make app directory as the working directory.
+#WORKDIR /app
+
+#COPY /app/* /var/www/html/
+
+EXPOSE 80
+
