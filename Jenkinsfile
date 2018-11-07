@@ -1,9 +1,14 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'node:7-alpine'
+    }
+
+  }
   stages {
     stage('check container health') {
       steps {
-        sh 'docker'
+        sh 'node --version'
       }
     }
   }
