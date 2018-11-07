@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('check container health') {
       steps {
-        sh 'ls /'
+        sh 'ls .'
       }
     }
   }
