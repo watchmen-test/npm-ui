@@ -1,13 +1,13 @@
 podTemplate(
-    name: 'test-pod',
-    label: 'test-pod',
+    name: 'test-pod2',
+    label: 'test-pod2',
     containers: [
         containerTemplate(name: 'golang', image: 'golang:1.9.4-alpine3.7'),
         
     ],
     {
         //node = the pod label
-        node('test-pod'){
+        node('test-pod2'){
             //container = the container label
             stage('Build'){
                 container('golang'){
