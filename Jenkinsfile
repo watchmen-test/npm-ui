@@ -12,6 +12,7 @@ podTemplate(
             stage('Build'){
                 container('golang'){
                     // This is where we build our code.
+                    sh 'echo "this is a test"'
                 }
             }
         }
