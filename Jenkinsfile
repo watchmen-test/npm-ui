@@ -6,7 +6,6 @@
             containerTemplate(name: 'maven', image: 'maven', ttyEnabled: true, command: 'cat'),
             containerTemplate(name: 'golang', image: 'golang:1.6.3-alpine', ttyEnabled: true, command: 'cat'),       
             containerTemplate(name: 'jnlp', image: 'jenkinsci/jnlp-slave:alpine', command: '/usr/local/bin/start.sh', args: '${computer.jnlpmac} ${computer.name}', ttyEnabled: false)],           
-            {
 
         //Lets use pod template (refernce by label)
         node(label) {
