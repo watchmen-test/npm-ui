@@ -16,7 +16,7 @@
              stage 'Genearate JSON schema'
              container(name: 'golang') {
               sh """
-                ls /home/jenkins/workspace
+                ls $WORKSPACE
                 whoami
                 printenv
               """
@@ -24,7 +24,7 @@
             
             stage 'Build model from JSON schema'
             container(name: 'maven') {
-              sh 'ls /home/jenkins/workspace'
+              sh 'ls $WORKSPACE'
             }
         }
     }
