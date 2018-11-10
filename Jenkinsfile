@@ -12,11 +12,17 @@
 
         //Lets use pod template (refernce by label)
         node(label) {
+            stage 'Copy src code to pvc'
+            container(name: 'jnlp'){
+                sh """
+                  mv $PWD /home/jenkins/.mvnrepo
+                """
+            }
 
              stage 'Genearate JSON schema'
              container(name: 'golang') {
               sh """
-                ls $WORKSPACE
+                ls /home/jenkins/.mvnrepo
                 whoami
                 printenv
               """
