@@ -3,9 +3,9 @@
 
     //Lets create a new pod template with jnlp and maven containers, that uses that label.
     podTemplate(label: label, containers: [
-            containerTemplate(name: 'maven', image: 'maven', ttyEnabled: true, command: 'cat'),
-            containerTemplate(name: 'golang', image: 'golang:1.6.3-alpine', ttyEnabled: true, command: 'cat'),       
-            containerTemplate(name: 'jnlp', image: 'jenkinsci/jnlp-slave:alpine', ttyEnabled: false)],           
+            containerTemplate(name: 'maven', image: 'maven', ttyEnabled: true, command: 'cat'),      
+            containerTemplate(name: 'jnlp', image: 'jenkinsci/jnlp-slave:alpine', ttyEnabled: false),
+            containerTemplate(name: 'docker-builder', image: 'gcr.io/kaniko-project/executor:latest', ttyEnabled: true)],           
             volumes: [
                     persistentVolumeClaim(mountPath: '/home/jenkins/.mvnrepo', claimName: 'jenkins-mvn-local-repo'),
                     secretVolume(mountPath: '/home/jenkins/.m2/', secretName: 'jenkins-maven-settings')]) {
@@ -18,12 +18,10 @@
                 checkout scm
             }
 
-             stage 'Genearate JSON schema'
-             container(name: 'golang') {
+             stage 'Build image'
+             container(name: 'docker-builder') {
               sh """
-                ls $WORKSPACE
-                whoami
-                printenv
+                executor -f $WORKSPACE/Dockerfile --no-push
               """
             }
             
