@@ -12,7 +12,7 @@
 
         //Lets use pod template (refernce by label)
         node(label) {
-            git 'https://github.com/fabric8/kubernetes-model'            
+                   
              stage 'Genearate JSON schema'
              container(name: 'golang') {
               sh """
