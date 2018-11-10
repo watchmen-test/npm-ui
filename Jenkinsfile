@@ -5,7 +5,7 @@
     podTemplate(label: label, containers: [
             containerTemplate(name: 'maven', image: 'maven', ttyEnabled: true, command: 'cat'),      
             containerTemplate(name: 'jnlp', image: 'jenkinsci/jnlp-slave:alpine', ttyEnabled: false),
-            containerTemplate(name: 'docker-builder', image: 'gcr.io/kaniko-project/executor:latest', command: '--no-push -f $WORKSPACE', ttyEnabled: true)],           
+            containerTemplate(name: 'docker-builder', image: 'gcr.io/kaniko-project/executor:debug', command: "/busybox/cat", ttyEnabled: true)],           
             volumes: [
                     persistentVolumeClaim(mountPath: '/home/jenkins/.mvnrepo', claimName: 'jenkins-mvn-local-repo'),
                     secretVolume(mountPath: '/home/jenkins/.m2/', secretName: 'jenkins-maven-settings')]) {
@@ -21,8 +21,7 @@
              stage 'Build image'
              container(name: 'docker-builder') {
               sh """
-                cd $WORKSPACE
-                echo 'mickey mouse'
+                /kaniko/executor -f $WORKSPACE/Dockerfile --no-push --context $WORKSPACE
               """
             }
             
