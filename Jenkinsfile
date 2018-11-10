@@ -15,7 +15,7 @@
             stage 'Copy src code to pvc'
             container(name: 'jnlp'){
                 sh """
-                  mv $PWD /home/jenkins/.mvnrepo
+                  mv $WORKSPACE /home/jenkins/.mvnrepo
                 """
             }
 
