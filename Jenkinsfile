@@ -12,8 +12,10 @@
 
         //Lets use pod template (refernce by label)
         node(label) {
+
             stage 'Copy src code to pvc'
             container(name: 'jnlp'){
+                checkout scm
                 sh """
                   mv $WORKSPACE /home/jenkins/.mvnrepo
                 """
