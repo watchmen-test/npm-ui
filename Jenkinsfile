@@ -12,18 +12,17 @@
 
         //Lets use pod template (refernce by label)
         node(label) {
-                   
+
              stage 'Genearate JSON schema'
              container(name: 'golang') {
               sh """
-                go build -a ./cmd/generate/generate.go
-	            ./generate > kubernetes-model/src/main/resources/schema/kube-schema.json
+                echo 'waht up!'
               """
             }
             
             stage 'Build model from JSON schema'
             container(name: 'maven') {
-              sh 'mvn clean install'
+              sh 'whoami'
             }
         }
     }
