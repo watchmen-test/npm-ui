@@ -21,7 +21,8 @@
              stage 'Build image'
              container(name: 'docker-builder') {
               sh """
-                executor --no-push -f $WORKSPACE/Dockerfile
+                cd $WORKSPACE
+                executor --no-push 
               """
             }
             
