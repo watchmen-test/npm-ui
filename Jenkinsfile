@@ -5,7 +5,7 @@
     podTemplate(label: label, containers: [
             containerTemplate(name: 'maven', image: 'maven', ttyEnabled: true, command: 'cat'),
             containerTemplate(name: 'golang', image: 'golang:1.6.3-alpine', ttyEnabled: true, command: 'cat'),       
-            containerTemplate(name: 'jnlp', image: 'jenkinsci/jnlp-slave:alpine', command: '/usr/local/bin/start.sh', args: '${computer.jnlpmac} ${computer.name}', ttyEnabled: false)],           
+            containerTemplate(name: 'jnlp', image: 'jenkinsci/jnlp-slave:alpine', ttyEnabled: false)],           
             volumes: [
                     persistentVolumeClaim(mountPath: '/home/jenkins/.mvnrepo', claimName: 'jenkins-mvn-local-repo'),
                     secretVolume(mountPath: '/home/jenkins/.m2/', secretName: 'jenkins-maven-settings')]) {
