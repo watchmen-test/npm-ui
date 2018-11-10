@@ -16,15 +16,12 @@
             stage 'Copy src code to pvc'
             container(name: 'jnlp'){
                 checkout scm
-                sh """
-                  mv $WORKSPACE /home/jenkins/.mvnrepo
-                """
             }
 
              stage 'Genearate JSON schema'
              container(name: 'golang') {
               sh """
-                ls /home/jenkins/.mvnrepo
+                ls $WORKSPACE
                 whoami
                 printenv
               """
