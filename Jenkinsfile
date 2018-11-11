@@ -3,7 +3,6 @@
 
     //Lets create a new pod template with jnlp and maven containers, that uses that label.
     podTemplate(label: label, containers: [
-            containerTemplate(name: 'maven', image: 'maven', ttyEnabled: true, command: 'cat'),      
             containerTemplate(name: 'jnlp', image: 'jenkinsci/jnlp-slave:alpine', ttyEnabled: false),
             containerTemplate(name: 'docker-builder', image: 'gcr.io/kaniko-project/executor:debug', command: "/busybox/cat", ttyEnabled: true)],           
             volumes: [
@@ -21,13 +20,8 @@
              stage 'Build image'
              container(name: 'docker-builder', shell: '/busybox/sh' ) {
                sh '''#!/busybox/sh
-                    /kaniko/executor -f `pwd`/Dockerfile -c `pwd` --destination=mydockerregistry:5000/myorg/myimage
+                    /kaniko/executor -f `pwd`/Dockerfile -c `pwd` --no-push
                     '''
-            }
-            
-            stage 'Build model from JSON schema'
-            container(name: 'maven') {
-              sh 'ls $WORKSPACE'
             }
         }
     }
