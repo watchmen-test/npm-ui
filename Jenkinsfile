@@ -20,9 +20,7 @@
 
              stage 'Build image'
              container(name: 'docker-builder', shell: '/busybox/sh' ) {
-              sh """
-                ls $WORKSPACE
-              """
+              sh "ls"
             }
             
             stage 'Build model from JSON schema'
