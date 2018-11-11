@@ -20,7 +20,9 @@
 
              stage 'Build image'
              container(name: 'docker-builder', shell: '/busybox/sh' ) {
-              sh "ls"
+               sh '''#!/busybox/sh
+                    /kaniko/executor -f `pwd`/Dockerfile -c `pwd` --insecure-skip-tls-verify --destination=mydockerregistry:5000/myorg/myimage
+                    '''
             }
             
             stage 'Build model from JSON schema'
