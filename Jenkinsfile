@@ -21,7 +21,7 @@
              stage 'Build image'
              container(name: 'docker-builder', shell: '/busybox/sh' ) {
               sh """
-                /kaniko/executor -f $WORKSPACE/Dockerfile --no-push --context $WORKSPACE
+                ls $WORKSPACE
               """
             }
             
