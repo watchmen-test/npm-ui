@@ -1,5 +1,5 @@
     //Lets define a unique label for this build.
-    def label = "buildpod.${env.JOB_NAME}.${env.BUILD_NUMBER}".replace('-', '_').replace('/', '_')
+   // def label = "buildpod.${env.JOB_NAME}.${env.BUILD_NUMBER}".replace('-', '_').replace('/', '_')
 
     // //Lets create a new pod template with jnlp and maven containers, that uses that label.
     // podTemplate(label: label, containers: [
@@ -26,7 +26,7 @@
 pipeline {
     agent {
         kubernetes {
-            label label
+            label 'kube-logo'
             containerTemplate {
                 name 'jnlp'
                 image 'jenkinsci/jnlp-slave:alpine'
