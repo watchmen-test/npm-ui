@@ -16,10 +16,10 @@ pipeline {
             stage('Lint and Build') {
                 steps {
                     container('json-lint'){
-                        sh './.ci/scripts/jsonlint.sh'
+                        sh '.ci/scripts/jsonlint.sh'
                     }
                     container(name: 'docker-builder', shell: '/busybox/sh' ){
-                        sh './.ci/scripts/buildcontainer.sh'
+                        sh '.ci/scripts/buildcontainer.sh'
                     }
                 }
             }
