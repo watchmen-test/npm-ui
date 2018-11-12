@@ -8,7 +8,7 @@ pipeline {
     }
     agent {
         kubernetes {
-            label '${kubeLabel}'
+            label 'ui-npm-build'
             containerTemplate {
                 name 'jnlp'
                 image 'jenkinsci/jnlp-slave:alpine'
@@ -44,7 +44,7 @@ pipeline {
                 }
             }
         }
-        // failure should go here
+        // failure should go here       
 }
 
 
