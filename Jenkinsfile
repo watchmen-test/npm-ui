@@ -26,12 +26,12 @@
 pipeline {
     agent {
         kubernetes {
-            label: label
+            label label
             containerTemplate {
                 name 'jnlp'
                 image 'jenkinsci/jnlp-slave:alpine'
                 ttyEnabled true
-            },
+            }
             containerTemplate {
                 name 'docker-builder'
                 image 'gcri.io/kaniko-project/executor:debug'
