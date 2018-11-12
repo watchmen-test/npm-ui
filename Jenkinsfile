@@ -40,9 +40,7 @@ pipeline {
             }
         }
     }
-    stages{
-        
-    }
+    
 
 }
 
