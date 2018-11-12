@@ -41,9 +41,7 @@ pipeline {
         }
     }
     stages{
-        stage('checkout from source code'){
-            checkout scm
-        }
+        
     }
 
 }
