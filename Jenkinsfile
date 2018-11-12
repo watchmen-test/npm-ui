@@ -9,23 +9,7 @@ pipeline {
     agent {
         kubernetes {
             label 'ui-npm-build'
-            containerTemplate {
-                name 'jnlp'
-                image 'jenkinsci/jnlp-slave:alpine'
-                ttyEnabled true
-            }
-            containerTemplate {
-                name 'docker-builder'
-                image 'gcr.io/kaniko-project/executor:debug'
-                command '/busybox/cat'
-                ttyEnabled true
-            }
-            containerTemplate {
-                name 'json-lint'
-                image 'sahsu/docker-jsonlint:latest'
-                command 'cat'
-                ttyEnabled true
-            }
+            yamlFile '.ci/pods.yaml'
         }
     }
         stages {
