@@ -16,14 +16,10 @@ pipeline {
             stage('Lint and Build') {
                 steps {
                     container('json-lint'){
-                        sh '''
-                        jsonlint `pwd`/package.json
-                        '''
+                        sh './.ci/scripts/jsonlint.sh'
                     }
                     container(name: 'docker-builder', shell: '/busybox/sh' ){
-                        sh '''#!/busybox/sh
-                         /kaniko/executor -f `pwd`/Dockerfile -c `pwd` --no-push
-                       '''
+                        sh './.ci/scripts/buildcontainer.sh'
                     }
                 }
             }
