@@ -1,3 +1,2 @@
 #!/busybox/sh
-#/kaniko/executor -f $WORKSPACE/Dockerfile -c $WORKSPACE --no-push
-echo "HI"
+/kaniko/executor -f `pwd`/Dockerfile -c `pwd` --no-push

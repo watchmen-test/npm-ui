@@ -1,7 +1,6 @@
     //Lets define a unique label for this build.
    // def kubeLabel = "buildpod.${env.JOB_NAME}.${env.BUILD_NUMBER}".replace('-', '_').replace('/', '_')
 
-
 pipeline {
     options {
         timeout( time:5, unit: 'MINUTES' )
@@ -19,10 +18,7 @@ pipeline {
                         sh '.ci/scripts/jsonlint.sh'
                     }
                     container(name: 'docker-builder', shell: '/busybox/sh' ){
-                        sh '''
-                        #!/busybox/sh
-                        .ci/scripts/buildcontainer.sh
-                        '''
+                        sh readFile('.ci/scripts/buildcontainer.sh')
                     }
                 }
             }
