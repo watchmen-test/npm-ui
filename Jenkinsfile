@@ -25,7 +25,7 @@
 
 pipeline {
     options {
-        timeout time:5, unit: 'MINUTES'
+        timeout( time:5, unit: 'MINUTES' )
     }
     agent {
         kubernetes {
@@ -44,10 +44,15 @@ pipeline {
         }
     }
         stages {
-            stage('stage test') {
+            stage('Checkout and Build') {
                 steps {
                     container('jnlp') {
                         sh 'echo "test"'
+                    }
+                    container(name: 'docker-builder', shell: '/busybox/sh' ){
+                        sh '''#!/busybox/sh
+                         /kaniko/executor -f `pwd`/Dockerfile -c `pwd` --no-push
+                       '''
                     }
                 }
             }
