@@ -24,6 +24,9 @@
     // }
 
 pipeline {
+    options {
+        timeout time:5, unit: 'MINUTES'
+    }
     agent {
         kubernetes {
             label 'kube-logo'
@@ -34,7 +37,7 @@ pipeline {
             }
             containerTemplate {
                 name 'docker-builder'
-                image 'gcri.io/kaniko-project/executor:debug'
+                image 'gcr.io/kaniko-project/executor:debug'
                 command '/busybox/cat'
                 ttyEnabled true
             }
