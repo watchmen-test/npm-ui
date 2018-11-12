@@ -19,7 +19,10 @@ pipeline {
                         sh '.ci/scripts/jsonlint.sh'
                     }
                     container(name: 'docker-builder', shell: '/busybox/sh' ){
-                        sh 'which sh'
+                        sh '''
+                        #!/busybox/sh
+                        .ci/scripts/buildcontainer.sh
+                        '''
                     }
                 }
             }
