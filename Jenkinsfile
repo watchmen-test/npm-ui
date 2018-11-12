@@ -4,10 +4,7 @@
     //Lets create a new pod template with jnlp and maven containers, that uses that label.
     podTemplate(label: label, containers: [
             containerTemplate(name: 'jnlp', image: 'jenkinsci/jnlp-slave:alpine', ttyEnabled: false),
-            containerTemplate(name: 'docker-builder', image: 'gcr.io/kaniko-project/executor:debug', command: "/busybox/cat", ttyEnabled: true)],           
-            volumes: [
-                    persistentVolumeClaim(mountPath: '/home/jenkins/.mvnrepo', claimName: 'jenkins-mvn-local-repo'),
-                    secretVolume(mountPath: '/home/jenkins/.m2/', secretName: 'jenkins-maven-settings')]) {
+            containerTemplate(name: 'docker-builder', image: 'gcr.io/kaniko-project/executor:debug', command: "/busybox/cat", ttyEnabled: true)]) {
 
         //Lets use pod template (refernce by label)
         node(label) {
