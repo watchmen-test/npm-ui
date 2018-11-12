@@ -42,8 +42,10 @@ pipeline {
     }
         stages {
             stage('stage test') {
-                container('jnlp') {
-                    sh 'echo "test"'
+                steps {
+                    container('jnlp') {
+                        sh 'echo "test"'
+                    }
                 }
             }
         }
