@@ -39,16 +39,14 @@ pipeline {
                 ttyEnabled true
             }
         }
-        stages{
+    }
+        stages {
             stage 'stage test' {
                 container 'jnlp' {
                     sh 'echo "test"'
                 }
             }
         }
-    }
-    
-
 }
 
 
