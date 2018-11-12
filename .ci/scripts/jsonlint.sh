@@ -1,2 +1,2 @@
 #!/bin/sh
-jsonlint "$pwd/package.json"
+jsonlint "$WORKSPACE/package.json"
