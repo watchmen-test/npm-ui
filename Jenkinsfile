@@ -28,7 +28,7 @@ pipeline {
                     // For SSH private key authentication, try the sshagent step from the SSH Agent plugin.
 
                     withCredentials([usernamePassword(credentialsId: 'a40be4ae-255e-4aa0-8405-b062181041fb', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
-                        sh '.ci/scripts/tagcontainer.sh'
+                        sh '.ci/scripts/tagcontainer.sh'    
                     }
                     
                 }
