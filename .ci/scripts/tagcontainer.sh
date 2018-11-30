@@ -4,7 +4,7 @@ BUILD=$BUILD_ID
 VERSION=${MAJOR}.${MINOR}.${BUILD}
 TAG=${VERSION}
 
-REPO="https://tfs.assurant.com:8080/tfs/GH-Encore/ASP.Encore-SSP/_git/ui-npm-dependencies"
+REPO="tfs.assurant.com:8080/tfs/GH-Encore/ASP.Encore-SSP/_git/ui-npm-dependencies"
 
 if [ "$BRANCH_NAME" = "master" ]
 then
