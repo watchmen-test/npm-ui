@@ -8,7 +8,7 @@ REPO=sspdevnettest.azurecr.io/ui/ui-npm
 
 if [ "$BRANCH_NAME" = 'master' ]
 then
-    /kaniko/executor -f `pwd`/Dockerfile -c `pwd` --destination=${REPO}/${BRANCH_NAME}:${VERSION} --destination=${REPO}:latest
+   # /kaniko/executor -f `pwd`/Dockerfile -c `pwd` --destination=${REPO}/${BRANCH_NAME}:${VERSION} --destination=${REPO}:latest
 else
     /kaniko/executor -f `pwd`/Dockerfile -c `pwd` --destination=${REPO}/${BRANCH_NAME}:${VERSION}
 fi
