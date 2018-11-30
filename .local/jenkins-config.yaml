@@ -1,0 +1,32 @@
+Master:
+  Cpu: 1
+  AdminPassword: test
+  # ImagePullPolicy: IfNotPresent
+  InstallPlugins:
+    - workflow-multibranch:2.20
+    - kubernetes:1.10.0
+    - workflow-aggregator:2.5
+    - workflow-job:2.25
+    - credentials-binding:1.16
+    - git:3.9.1
+    - blueocean:1.6.0
+    - configuration-as-code:1.0
+    - ssh-agent:1.17
+  Memory: 2Gi
+rbac:
+  install: true
+Agent:
+  Enabled: true
+#   Component: "jenkins-slave"
+#   Privileged: true
+  Cpu: "1"
+  Memory: "1024Mi"
+#   # You may want to change this to true while testing a new image
+#   AlwaysPullImage: false
+#   # You can define the volumes that you want to mount for this container
+#   # Allowed types are: ConfigMap, EmptyDir, HostPath, Nfs, Pod, Secret
+#   volumes:
+#     - type: HostPath  
+#       hostPath: /var/run/docker.sock
+#       mountPath: /var/run/docker.sock
+#   NodeSelector: {}
