@@ -22,6 +22,17 @@ pipeline {
                     }
                 }
             }
+
+            stage('Create tag') {
+                steps {
+                    // For SSH private key authentication, try the sshagent step from the SSH Agent plugin.
+                    sshagent (credentials: ['id-rsa-priv-key-ui-npm']) {
+                        sh readFile('.ci/scripts/tagcontainer.sh')
+                    }
+                    
+                }
+            }
+
         }
         // failure should go here       
 }
