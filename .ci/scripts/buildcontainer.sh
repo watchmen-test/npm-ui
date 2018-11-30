@@ -3,5 +3,12 @@ MAJOR=1
 MINOR=0
 BUILD=$BUILD_ID
 VERSION=${MAJOR}.${MINOR}.${BUILD}
+REPO=sspdevnettest.azurecr.io/ui/ui-npm
 
-/kaniko/executor -f `pwd`/Dockerfile -c `pwd` --destination=sspdevnettest.azurecr.io/ui/ui-npm/${BRANCH_NAME}:${VERSION}
+
+if [ "$BRANCH_NAME" = 'master' ]
+then
+    /kaniko/executor -f `pwd`/Dockerfile -c `pwd` --destination=${REPO}/${BRANCH_NAME}:${VERSION} --destination=${REPO}:latest
+else
+    /kaniko/executor -f `pwd`/Dockerfile -c `pwd` --destination=${REPO}/${BRANCH_NAME}:${VERSION}
+fi
