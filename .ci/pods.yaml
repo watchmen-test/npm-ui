@@ -12,9 +12,22 @@ spec:
     image: gcr.io/kaniko-project/executor:debug
     command:
     - /busybox/cat
+    volumeMounts:
+      - name: docker-config
+        mountPath: "/kaniko/.docker"
+    env:
+      - name: DOCKER_CONFIG
+        value: "/kaniko/.docker"
     tty: true
   - name: json-lint
     image: sahsu/docker-jsonlint:latest
     command:
     - cat
     tty: true
+  volumes:
+    - name: docker-config
+      secret: 
+        secretName: ui-registry-acr-login
+        items:
+          - key: config.json
+            path: config.json

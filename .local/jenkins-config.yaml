@@ -11,6 +11,8 @@ Master:
     - git:3.9.1
     - blueocean:1.6.0
     - configuration-as-code:1.0
+    - ssh-agent:1.17
+    - tfs:5.142.0
   Memory: 2Gi
 rbac:
   install: true
